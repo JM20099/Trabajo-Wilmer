@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<title>Juan Solarte</title>
@@ -7,6 +7,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<link rel="stylesheet" href="herramientas/styles/css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="herramientas/js/login.js"></script>
 </head>
 
 <body>
@@ -52,11 +54,11 @@
 							</div>
 							<form action="#" class="signin-form">
 								<div class="cl-form-group cl-mt-3">
-									<input type="text" class="cl-form-control" required>
+									<input type="text" id='correoUsu' name='correoUsu' style='cursor: pointer;' title='Iniciar Sesión' class="cl-form-control">
 									<label class="form-control-placeholder" for="username">Correo</label>
 								</div>
 								<div class="cl-form-group">
-									<input id="password-field" type="password" class="cl-form-control" required>
+									<input type="password" id='claveUsu' name='claveUsu' style='cursor: pointer;' title='Iniciar Sesión' class="cl-form-control">
 									<label class="form-control-placeholder" for="password">Contraseña</label>
 									<span toggle="#password-field"
 										class="fa fa-fw fa-eye field-icon toggle-password"><svg class="cl-icon"
@@ -75,23 +77,20 @@
 										</svg></span>
 								</div>
 								<div class="cl-form-group">
-									<button type="submit"
-										class="cl-form-control cl-btn cl-btn-primary cl-rounded submit cl-px-3">Iniciar Sesion
+									<button type="button" id='entrarBtn' name='entrarBtn' style='cursor: pointer;' title='Iniciar Sesión' class="cl-form-control cl-btn cl-btn-primary cl-rounded submit cl-px-3">
+										Iniciar Sesion
+									</button>
+
+									<button type="button" id='activarBtn' name='activarBtn' style='cursor: pointer;' title='Activar cuenta en el sistema' class="cl-form-control cl-btn cl-btn-primary cl-rounded submit cl-px-3">
+										Activar Cuenta
 									</button>
 								</div>
 								<div class="cl-form-group cl-d-md-flex">
-									<div class="cl-w-50 cl-text-left">
-										<label class="checkbox-wrap checkbox-primary cl-mb-0">Remember Me
-											<input type="checkbox" checked>
-											<span class="checkmark"></span>
-										</label>
-									</div>
 									<div class="cl-w-50 cl-text-md-right">
-										<a href="#">Forgot Password</a>
+										<a href="#">¿Olvidaste tu contraseña?</a>
 									</div>
 								</div>
 							</form>
-							<p class="cl-text-center">Not a member? <a data-toggle="tab" href="#signup">Sign Up</a></p>
 						</div>
 					</div>
 				</div>
@@ -99,7 +98,7 @@
 		</div>
 	</section>
 
-	<script src="js/snippet.js"></script>
+	
 </body>
 
 </html>
