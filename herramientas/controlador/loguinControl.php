@@ -1,29 +1,29 @@
 <?php
-if (basename(__FILE__) == basename($_SERVER["SCRIPT_FILENAME"]))    // si el archivo es llamado directamente, redirigir a index.php
-    { header("Location: ../../index.php"); }
-else
+if (realpath(__FILE__) === realpath($_SERVER["SCRIPT_FILENAME"]))     // si el archivo es ejecutado directamente, es decir, si el archivo es accedido directamente a través de la URL en lugar de ser incluido por otro archivo, entonces se ejecuta el bloque de código dentro del if.
+
     {
         header('Content-Type: text/html; charset=utf-8');
         include('../include/conex.php');
-        session_start();        //session_start es necesario para poder usar variables de sesión
         ini_set('session.cookie_httponly', 1);
         ini_set('session.use_strict_mode', 1);  //usar modelos unicos del sistema como por ejemplo https
         ini_set('session.cookie_secure',   1);  //solo se puede usar en https
-        if (isset($_SERVER['HTTPS'])) { ini_set('session.cookie_secure', 1); }   //si hhtps esta vacio entonces inicia session.cookie_secure
-        $opcion  = filter_input(INPUT_POST, 'opcion', FILTER_SANITIZE_STRING);
-        if(isset($correoUsu) && isset($claveUsu) && isset($opcion)){						
+		session_start();        //session_start es necesario para poder usar variables de sesión
+        $opcion = $_POST['opcion'] ?? '';  //operador de fusión de null, si $_POST['opcion'] no está definido, se asigna una cadena vacía a $opcion
+		$correoUsu = $_POST['correoUsu'] ?? '';
+		$claveUsu = $_POST['claveUsu'] ?? '';
+        if(isset($opcion) && isset($correoUsu) && isset($claveUsu)){	
+				try{					
 					switch($opcion){
-						case 'iniciarLogueo':							
-							$correoUsu = filter_input(INPUT_POST, 'correoUsu', FILTER_SANITIZE_EMAIL);
-							$claveUsu   = filter_input(INPUT_POST, 'claveUsu', FILTER_SANITIZE_STRING);
+						case 'iniciarLogueo':	
+							$estado = '0';  //estado es una variable que se utiliza para indicar el estado del inicio de sesión. Inicialmente se establece en '0', lo que significa que el inicio de sesión no ha sido exitoso. Si se encuentra un usuario válido en la base de datos, se cambiará a '1' para indicar que el inicio de sesión fue exitoso.						
 							$query = "SELECT
 										usu.idUsuario,
-										usu.correoInstitucionalUsuario,
+										usu.correoUsuario,
 										usu.contrasenaUsuario,
 										rl.nombreRol, rl.idRol,
 										FROM usuarios usu
 										INNER JOIN rol rl ON rl.idRol = usu.idRol
-										WHERE usu.correoInstitucionalUsuario = ?
+										WHERE usu.correoUsuario = ?
 										AND usu.contrasenaUsuario = ? ;";
 							$resultQuery = $conexion->prepare($query);
 							$resultQuery->bind_param("ss", $correoUsu, $claveUsu);      //bind_param() se utiliza para vincular los parámetros a la consulta preparada. En este caso, se están vinculando dos parámetros de tipo string (ss) a la consulta, que corresponden a las variables $correoUsu y $claveUsu. Esto ayuda a prevenir ataques de inyección SQL al asegurarse de que los valores se traten como datos y no como parte de la consulta SQL y ss es para indicar que son dos parametros de tipo string, si fueran enteros seria ii, si fueran un string y un entero seria si y bind_param es 
@@ -33,14 +33,12 @@ else
 								{
 									session_regenerate_id(true);
 									$_SESSION = array();      //array() es una función que se utiliza para crear un array vacío. En este caso, se está utilizando para reiniciar la variable de sesión $_SESSION y asegurarse de que no haya datos antiguos almacenados en ella antes de asignar nuevos valores.
-									$_SESSION['idUsuarioSesion'] = $datos_fila['idUsuario'];
+									$_SESSION['idUsuarioSesion'] = $datos_fila['idUsuario'];       //$_SESSION es una superglobal en PHP que se utiliza para almacenar datos de sesión. En este caso, se están asignando valores a diferentes claves dentro del array $_SESSION para almacenar información del usuario que ha iniciado sesión. Por ejemplo, $_SESSION['idUsuarioSesion'] almacena el ID del usuario, $_SESSION['correoUsuSesion'] almacena el correo electrónico del usuario, y así sucesivamente. Estos valores se pueden utilizar en otras partes de la aplicación para identificar al usuario y mantener su sesión activa.
 									$_SESSION['correoUsuSesion'] = $datos_fila['correoInstitucionalUsuario'];
 									$_SESSION['idrolSesion'] = $datos_fila['idRol'];
 									$_SESSION['nombreRolSesion'] = $datos_fila['nombreRol'];
 									$_SESSION['loguinUsuSesion'] = $datos_fila['usuLoguedao'];
-									$estado = '1';	
-									echo "todo bien";
-									exit();					
+									$estado = '1';				
 								}echo $estado;
 							$resultQuery->close();
 					break;
@@ -66,4 +64,4 @@ else
 		}				
 	} else{ redirigirInicio(); 	}
 } else { redirigirInicio(); }
-?>
+?> 

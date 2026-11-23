@@ -18,11 +18,21 @@ $ (document).ready(function() {          // codigo inicial para inicializar el s
 						correoUsu: $("#correoUsu").val(),      //val() es una función de jQuery que permite obtener o establecer el valor de un elemento del formulario
 						claveUsu: $("#claveUsu").val()
 				},
-					success: function(response) {				   //response es la respuesta que se recibe del servidor, success es una función de jQuery que se ejecuta cuando la petición se realiza correctamente			
-						if (response.estado == 0) 
-							{ alert("CREDENCIALES INCORRECTAS."); }
-						else { window.location.href = "herramientas/controlador/menu.php";  }
+					success: function(response) {
+						var estado = String(response).trim();      //trim() es una función de JavaScript que elimina los espacios en blanco al inicio y al final de una cadena de texto. En este caso, se utiliza para asegurarse de que la respuesta del servidor no contenga espacios adicionales que puedan afectar la comparación posterior.
+						if (estado === "0")
+							{
+								alert("CREDENCIALES INCORRECTAS.");
+							} else if (estado === "1")
+							{
+								alert('Bien credenciales correctas...!! je je je je');
+								//window.location.href = "herramientas/controlador/menu.php";
+							} else { alert("Respuesta inesperada del servidor: " + estado); }
+					},
+					error: function(xhr) {     //xhr es un objeto que contiene información sobre la solicitud AJAX que se realizó, incluyendo el estado de la respuesta y el texto de la respuesta. En este caso, se utiliza para mostrar un mensaje de error si la solicitud falla.
+						alert("Error " + xhr.status + ": " + xhr.responseText);
 					}
+				
 				});
 
 			}
