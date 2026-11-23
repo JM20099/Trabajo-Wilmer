@@ -8,6 +8,7 @@
 
 	<link rel="stylesheet" href="herramientas/styles/css/style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="herramientas/js/login.js"></script>
 </head>
 
@@ -54,11 +55,11 @@
 							</div>
 							<form action="#" class="signin-form">
 								<div class="cl-form-group cl-mt-3">
-									<input type="text" id='correoUsu' name='correoUsu' style='cursor: pointer;' title='Iniciar Sesión' class="cl-form-control">
+									<input type="text" id='correoUsu' name='correoUsu' style='cursor: pointer;' title='Ingrese su Correo' class="cl-form-control">
 									<label class="form-control-placeholder" for="username">Correo</label>
 								</div>
 								<div class="cl-form-group">
-									<input type="password" id='claveUsu' name='claveUsu' style='cursor: pointer;' title='Iniciar Sesión' class="cl-form-control">
+									<input type="password" id='claveUsu' name='claveUsu' style='cursor: pointer;' title='Ingrese su Contraseña' class="cl-form-control">
 									<label class="form-control-placeholder" for="password">Contraseña</label>
 									<span toggle="#password-field"
 										class="fa fa-fw fa-eye field-icon toggle-password"><svg class="cl-icon"
