@@ -11,85 +11,127 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	<body>
+		<nav class="navbar navbar-dark bg-dark d-lg-none py-1">
 		<div class="container-fluid">
-			<div class="row" style="height:100vh">
-				<div class="col-2 col-sm-2 col-xl-2 bg-dark"> 
-					<nav class="navbar bg-dark border-bottom border-white" data-bs-theme="dark">
-						<div class="container-fluid">
-							<a class="navbar-brand" href="menu.php">
-								<h1 class="text-center">
-									<img src="img/senalogo.png" style='max-width: 40px; height: 40px;'alt=""> ARC
-								</h1> 
-							</a>
-						</div>
-					</nav>
-					<nav class="nav flex-column">                
-						<ul class="nav flex-column">
-							<li class="nav-item">
-								<a class="nav-link active" aria-current="page" href="programas.php">Registrar Programa</a>
-							</li>
-							<li class="nav-item">
-							<a class="nav-link" href="#">Usuarios</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Asignacion</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Asignacion1</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Asignacion2</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="#">Asignacion3</a>
-							</li>						
-							<li class="nav-item">
-								<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">evaluacion</a>
-							</li>
-						</ul>
-					</nav>   
-				</div>
-				<div class="col-9 col-sm-9 col-xl-10 p-0 m-0">
-					<!-- <nav class="navbar navbar-expand-lg bg-body-tertiary">
-						<ul class="navbar-nav ms-auto">
-							<li class="nav-item">							
-								<div class="info-box">
-									<div class="info-box-content">
-										<a class="nav-link" href="loguinControl.php?opcion=salir">
-											Salir
-										</a>				
-									</div>
-								</div>
-							</li>
-						</ul>
-					</nav>
-					-->
-					<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<button class="navbar-toggler p-1" type="button"
+					data-bs-toggle="offcanvas" data-bs-target="#menuLateral"
+					aria-controls="menuLateral" aria-label="Abrir menú">
+				<span class="navbar-toggler-icon"></span>
+			</button>
 
-						<ul class="navbar-nav ms-auto">
-							<li class="nav-item">                           
-								<div class="info-box">
-									<div class="info-box-content">
-										<?php session_start();	echo $_SESSION['loguinUsuSesion']; ?>
-									</div>
+			<button type="button" id="opSalir1" name="opSalir1" title="opcion salir" class="btn btn-primary btn-sm ms-auto">
+				<span class="nombre-usuario">Usuario</span> - Salir - <i class="bi bi-box-arrow-right"></i>
+			</button>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row min-vh-100">
+
+			<!-- ================= MENÚ LATERAL ================= -->
+			<div class="col-lg-3 col-xl-2 bg-dark p-0">
+				<aside class="offcanvas-lg offcanvas-start text-bg-dark sticky-lg-top" tabindex="-1" id="menuLateral" aria-labelledby="tituloMenu">
+					<div class="offcanvas-header border-bottom border-secondary">
+						<h5 class="offcanvas-title ms-2 me-auto" id="tituloMenu">
+							<img src="../../img/logoSenaFN.png" alt="SENA" width="50" height="50">
+							<span class="fs-5 fw-semibold">GYM - Sena</span>
+						</h5>
+						<button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#menuLateral" aria-label="Cerrar"></button>
+					</div>
+
+					<div class="offcanvas-body flex-column p-3">
+						<a href="#" class="d-none d-lg-flex align-items-center gap-2 mb-3 pb-3 text-white text-decoration-none border-bottom border-secondary">
+							<img src="../../img/logoSenaFN.png" alt="SENA" width="50" height="50">
+							<span class="fs-5 fw-semibold">GYM - Sena</span>
+						</a>
+
+						<ul class="nav nav-pills flex-column gap-1" id="listaMenu">
+							<li class="nav-item">
+								<a class="nav-link active d-flex align-items-center gap-2" href="#">
+									<i class="bi bi-house-door"></i> Inicio
+								</a>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-white d-flex align-items-center gap-2" href="#subUsuarios"
+								   role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="subUsuarios">
+									<i class="bi bi-people"></i> Usuarios
+									<i class="bi bi-chevron-down ms-auto small"></i>
+								</a>
+								<div class="collapse" id="subUsuarios" data-bs-parent="#listaMenu">
+									<ul class="nav flex-column ms-4 small">
+										<li><a class="nav-link text-white-50" href="usuarios.php">Usuarios</a></li>
+										<li><a class="nav-link text-white-50" href="rol.php">Roles</a></li>
+										<li><a class="nav-link text-white-50" href="areas.php">Areas</a></li>
+										<li><a class="nav-link text-white-50" href="rutinas.php">Rutinas</a></li>
+									</ul>
 								</div>
-							</li>						
-							<li class="nav-item">                           
-								<div class="info-box">
-									<div class="info-box-content">
-										<a class="btn btn-danger" href="../controlador/loguinControl.php?opcion=salir">
-											&nbsp&nbsp&nbsp&nbspSalir&nbsp&nbsp&nbsp&nbsp
-										</a>
-									</div>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-white d-flex align-items-center gap-2" href="#subReportes"
+								   role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="subReportes">
+									<i class="bi bi-bar-chart"></i> Reportes
+									<i class="bi bi-chevron-down ms-auto small"></i>
+								</a>
+								<div class="collapse" id="subReportes" data-bs-parent="#listaMenu">
+									<ul class="nav flex-column ms-4 small">
+										<li><a class="nav-link text-white-50" href="#">Diario</a></li>
+										<li><a class="nav-link text-white-50" href="#">Mensual</a></li>
+									</ul>
+								</div>
+							</li>
+
+							<li class="nav-item">
+								<a class="nav-link text-white d-flex align-items-center gap-2" href="#subConfig"
+								   role="button" data-bs-toggle="collapse" aria-expanded="false" aria-controls="subConfig">
+									<i class="bi bi-gear"></i> Configuración
+									<i class="bi bi-chevron-down ms-auto small"></i>
+								</a>
+								<div class="collapse" id="subConfig" data-bs-parent="#listaMenu">
+									<ul class="nav flex-column ms-4 small">
+										<li><a class="nav-link text-white-50" href="#">Roles</a></li>
+									</ul>
 								</div>
 							</li>
 						</ul>
-					</nav>				
-				</div>	
+
+						<div class="border-top border-secondary pt-3 mt-3">
+							<div class="d-flex align-items-center gap-2 mb-2 px-3 small text-white-50">
+								<i class="bi bi-person-circle fs-5"></i>
+								<span class="nombre-usuario">Usuario</span>
+							</div>
+							<button type="button" id="opSalir2" name="opSalir2" title="opcion salir" class="btn btn-primary w-100 text-start">
+								<i class="bi bi-box-arrow-right"></i> Salir
+							</button>
+						</div>
+					</div>
+				</aside>
 			</div>
-			<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-			<script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0/dist/js/adminlte.min.js"></script>
-		</div>		
-	</body>
+
+			<!-- ================= CONTENIDO PRINCIPAL ================= -->
+			<main class="col-lg-9 col-xl-10 p-4">
+				<h1 class="h3">Bienvenido</h1>
+				<p>Aquí va el contenido de la página.</p>
+			</main>
+
+		</div>
+	</div>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script>
+		// Reemplaza lo que antes hacía PHP: $_SESSION['loguinUsuSesion']
+		// Cambia este valor o léelo de localStorage / una API.
+		const usuario = localStorage.getItem('loguinUsuSesion') || 'Usuario';
+		document.querySelectorAll('.nombre-usuario').forEach(el => el.textContent = usuario);
+
+		// Botones de salir
+		function salir() {
+			localStorage.removeItem('loguinUsuSesion');
+			window.location.href = '../../index.php';
+		}
+		document.getElementById('opSalir1').addEventListener('click', salir);
+		document.getElementById('opSalir2').addEventListener('click', salir);
+	</script>
+</body>
 </html>
