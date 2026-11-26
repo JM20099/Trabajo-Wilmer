@@ -12,8 +12,57 @@
 		<!-- ================= INICIO CONTENIDO DE CADA PAGINA ================= -->
 			<main class="col p-4 min-vh-100">
 				<h1 class="h3">FORMAULRIO DE RUTINAS</h1>
+
+			<!--inicio de botones!-->
+
+				<div class="card shadow-sm mt-4">
+					<div class="card-body">
+						<div class="row g-2 align-items-end">
+							<div class="col-md-8">
+								<label for="txtArea" class="form-label">Nombre de la rutina</label>
+								<!-- stopPropagation permite escribir aunque el body tenga onkeydown="return false" -->
+								<input type="text" class="form-control" id="txtArea" name="txtArea"
+									   placeholder="Escriba el nombre de la rutina" onkeydown="event.stopPropagation()">
+							</div>
+							<div class="col-md-4 d-grid">
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRutinas">
+									Abrir modal
+								</button>
+
+								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalRutinas">
+									Buscar
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			<!--fin de botones!-->
+
+			<!--   inicio de modal crear rutina --> 				
+			<div class="modal fade" id="modalRutinas" tabindex="-1" aria-labelledby="modalAreaLabel" aria-hidden="true">
+					<div class="modal-dialog modal-dialog-centered">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title" id="modalAreaLabel">Rutina ingresada</h5>
+								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+							</div>
+							<div class="modal-body">
+								<p class="mb-0">Rutina: <strong id="lblArea">(sin datos)</strong></p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+								<button type="button" class="btn btn-success">Guardar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			<!--   cierre de modal crear rutina -->
+
 			</main>
 		<!-- ================= CIERRE CONTENIDO DE CADA PAGINA ================= -->
 		<?php require_once 'fooderMenu.php'; ?> 
+
+		
 	</body>
 </html>

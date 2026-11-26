@@ -48,6 +48,7 @@
 											<li><a class="nav-link text-white-50" href="usuarios.php">Usuarios</a></li>
 											<li><a class="nav-link text-white-50" href="rol.php">Roles</a></li>
 											<li><a class="nav-link text-white-50" href="areas.php">Areas</a></li>
+											<li><a class="nav-link text-white-50" href="rutinas.php">rutinas</a></li>
 										</ul>
 									</div>
 								</li>
@@ -85,6 +86,8 @@
 								<button type="button" id="opSalir2" name="opSalir2" title="opcion salir" class="btn btn-primary w-100 text-start">
 									<i class="bi bi-box-arrow-right"></i> &nbsp Salir
 								</button>
+
+								<script src="../js/salir.js"></script>
 							</div>
 						</div>
 					</aside>
