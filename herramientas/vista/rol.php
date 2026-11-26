@@ -48,7 +48,19 @@
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
 							</div>
 							<div class="modal-body">
-								<p class="mb-0">Rol: <strong id="lblArea">(sin datos)</strong></p>
+								<div class="mb-3">
+									<labelfor="recipient-name" class="col-form-label">Ingrese el nombre del usuario</label>
+									<input type="text" id='numeroIdentificacionUsuario' name='numeroIdentificacionUsuario' class="form-control" title='' style='cursor:pointer;' placeholder='Ingrese el nombre' >
+								</div>
+								<div class="mb-3">
+									<labelfor="recipient-name" class="col-form-label">Seleccione el rol del usuario</label>
+									<select id='idArea_FK' name='idArea_FK' class="form-control" title='' style='cursor:pointer;' >
+											<option value='0' >Seleccione:</option>
+											<option value='1' >Aprendiz</option>
+											<option value='2' >Instructor</option>
+											<option value='3' >Funcionario</option>
+									</select>
+								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>

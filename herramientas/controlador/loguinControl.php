@@ -57,13 +57,16 @@
 							// Las credenciales solo se aceptan por POST (nunca en la URL)
 							if ($_SERVER['REQUEST_METHOD'] !== 'POST') {	http_response_code(405); echo '0'; break;	}
 								$estado = '0';
-								$query = "SELECT  usu.idUsuario, usu.correoUsuario,
-										  CONCAT(SUBSTRING_INDEX(TRIM(nombresUsuario), ' ', 1), ' ', SUBSTRING_INDEX(TRIM(apellidosUsuario), ' ', 1)) as usuLoguedao,
-										  usu.contrasenaUsuario, rl.nombreRol, rl.idRol		  
+								$query = "SELECT  usu.idusuario, usu.correoinstitucionalusuario,
+										  CONCAT(SUBSTRING_INDEX(TRIM(nombreusuario), ' ', 1), ' ', SUBSTRING_INDEX(TRIM(apellidosusuario), ' ', 1)) as usuLoguedao, 
+										  usu.password, tp.nombretiposdeusuarios, tp.idtipodeusuario 		  
 										  FROM usuarios usu
-										  INNER JOIN rol rl ON rl.idRol = usu.idRol
-										  WHERE usu.correoUsuario = ?
-										  AND usu.contrasenaUsuario = ? ;";
+										  INNER JOIN tipos_de_usuarios tp ON tp.idtipodeusuario = usu.idtipodeusuario
+										  WHERE usu.correoinstitucionalusuario = ?
+										  AND usu.password = ? ;";
+
+									
+
 								$resultQuery = $conexion->prepare($query);
 								$resultQuery->bind_param("ss", $correoUsu, $claveUsu);
 								$resultQuery->execute();
@@ -72,10 +75,10 @@
 									{
 										session_regenerate_id(true);
 										$_SESSION = array();
-										$_SESSION['idUuarioSesion'] = $datos_fila['idUsuario'];
-										$_SESSION['correoUsuSesion'] = $datos_fila['correoUsuario'];
-										$_SESSION['idrolSesion'] = $datos_fila['idRol'];
-										$_SESSION['nombreRolSesion'] = $datos_fila['nombreRol'];
+										$_SESSION['idUuarioSesion'] = $datos_fila['idusuario'];
+										$_SESSION['correoUsuSesion'] = $datos_fila['correoinstitucionalusuario'];
+										$_SESSION['idrolSesion'] = $datos_fila['idtipodeusuario'];
+										$_SESSION['nombreRolSesion'] = $datos_fila['nombretiposdeusuarios'];
 										$_SESSION['loguinUsuSesion'] = $datos_fila['usuLoguedao'];
 										$estado = '1';						
 									}echo $estado;

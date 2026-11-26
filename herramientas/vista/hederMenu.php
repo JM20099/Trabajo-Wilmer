@@ -33,7 +33,7 @@
 							</a>
 							<ul class="nav nav-pills flex-column gap-1" id="listaMenu">
 								<li class="nav-item">
-									<a class="nav-link active d-flex align-items-center gap-2" href="#">
+									<a class="nav-link active d-flex align-items-center gap-2" href="inicio_principal">
 										<i class="bi bi-house-door"></i> &nbsp Inicio
 									</a>
 								</li>
@@ -45,10 +45,8 @@
 									</a>
 									<div class="collapse" id="subUsuarios" data-bs-parent="#listaMenu">
 										<ul class="nav flex-column ms-4 small">
-											<li><a class="nav-link text-white-50" href="usuarios.php">Usuarios</a></li>
-											<li><a class="nav-link text-white-50" href="rol.php">Roles</a></li>
-											<li><a class="nav-link text-white-50" href="areas.php">Areas</a></li>
-											<li><a class="nav-link text-white-50" href="rutinas.php">rutinas</a></li>
+											<li><a class="nav-link text-white-50" href="usuarios.php">Asignacion de Rutinas</a></li>
+											<li><a class="nav-link text-white-50" href="rutinas.php">Creacion de Rutinas</a></li>
 										</ul>
 									</div>
 								</li>
@@ -87,7 +85,7 @@
 									<i class="bi bi-box-arrow-right"></i> &nbsp Salir
 								</button>
 
-								<script src="../js/salir.js"></script>
+								<!--<script src="../js/salir.js"></script> !-->
 							</div>
 						</div>
 					</aside>

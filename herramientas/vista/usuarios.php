@@ -11,7 +11,7 @@
 		<?php require_once 'hederMenu.php'; ?> 
 		<!-- ================= INICIO CONTENIDO DE CADA PAGINA ================= -->
 			<main class="col p-4 min-vh-100">
-				<h1 class="h3">FORMAULRIO DE INGRESO USUARIOS</h1>	
+				<h1 class="h3">FORMAULRIO DE RUTINAS DE USUARIOS</h1>	
 				
 				<!--inicio de botones!-->
 
@@ -26,7 +26,7 @@
 							</div>
 							<div class="col-md-4 d-grid">
 								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUsuarios">
-									Abrir modal
+									Asignar Rutina
 								</button>
 
 								<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUsuarios">
@@ -47,8 +47,25 @@
 								<h5 class="modal-title" id="modalAreaLabel">Usuario ingresado</h5>
 								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
 							</div>
+
 							<div class="modal-body">
-								<p class="mb-0">Usuario: <strong id="lblArea">(sin datos)</strong></p>
+								<div class="mb-3">
+									<labelfor="recipient-name" class="col-form-label">Aprendiz que se le va a asignar rutina</label>
+									<input type="text" id='numeroIdentificacionUsuario' name='numeroIdentificacionUsuario' class="form-control" title='' style='cursor:pointer;' placeholder='Ingrese su nombre o numero de documento' >
+								</div>
+								<div class="mb-3">
+									<labelfor="recipient-name" class="col-form-label">Fecha de asignacion de rutina</label>
+									<input type="date" id='nombresUsuario' name='nombresUsuario' class="form-control" title='' style='cursor:pointer;' placeholder='Ingrese el nombre de la rutina' >
+								</div>
+								<div class="mb-3">
+									<labelfor="recipient-name" class="col-form-label">Rutina que se le va a asignar al usuario</label>
+									<select id='idArea_FK' name='idArea_FK' class="form-control" title='' style='cursor:pointer;' >
+											<option value='0' >Seleccione:</option>
+											<option value='1' >Rutina 1</option>
+											<option value='2' >Rutina 2</option>
+											<option value='2' >Rutina 3</option>
+									</select>
+								</div>
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
